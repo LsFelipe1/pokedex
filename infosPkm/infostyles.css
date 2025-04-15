@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: 0.1s;
+}
+
+@media screen and (max-width: 540px) {
+    * {
+        overflow-x: hidden;
+    }
+
+    .aboutPkm{
+        display: flex;
+        flex-direction: column !important;
+        justify-content: center !important;
+        margin: 10px auto !important;
+        font-size: 1rem !important;
+    }
+
+    .aboutPkm span {
+        margin: 5px auto;
+        font-weight: bolder;
+        font-size: 1rem !important;
+    }
+
+    .bar {
+        margin-left: 0 !important;
+    }
+
+    #back {
+    display: flex;
+    min-width: 35px;
+    margin: auto !important;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .infosPkm {
+        flex-wrap: nowrap !important;
+        width: 100dvw;
+    }
+}
+
+:root {
+    --bg-color: #fafafa;
+    --bar-color: #e0e0e0;
+    --text-color: azure;
+    --txt-color: #000000;
+    --border-color: #b8b8b8;
+
+    --bg-color-hover: black;
+    --color-hover: #ffffff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Oswald", sans-serif;
+    overflow-x: hidden;
+}
+
+body.darkMode {
+    --bg-color: #181818;
+    --bar-color: #2e2e2e;
+    --text-color: #ffffff;
+    --txt-color: #ffffff;
+    --border-color: #363636;
+
+    --bg-color-hover: #ffffff;
+    --color-hover: #000000;
+}
+
+.modebtn {
+    border-style: none;
+    max-width: 3dvh;
+    min-width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.pkmContainer {
+    display: flex;
+    margin: 10rem;
+}
+
+.infoContainer {
+    min-width: 70vw;
+    min-height: 30vh;
+}
+
+.imgPkm {
+    display: flex;
+    justify-content: center;
+}
+
+.pokeSprite {
+    position: relative;
+    bottom: 30px;
+}
+
+.infosPkm {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    border-radius: 40px 40px 0px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.generalInfo {
+    margin-top: 30px;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--txt-color);
+}
+
+span {
+    height: fit-content;
+}
+
+.Types {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.typesPkm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0px;
+    min-width: 10rem;
+    padding: 8px 15px;
+    border-radius: 40px;
+    text-align: center;
+    color: var(--text-color);
+    margin: auto 15px;
+}
+
+.typeImg {
+    width: 2rem;
+    margin-right: 1.5rem;
+}
+
+.aboutPkm {
+    min-width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3rem;
+    color: var(--txt-color);
+}
+
+.aboutPkm span {
+    font-size: 2rem;
+    padding-right: 40px;
+}
+
+.bar {
+    margin-left: 6rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.generalInfo span {
+    background-color: rgb(56, 56, 56);
+    border-radius: 30px;
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 10px;
+}
+
+#back {
+    margin-left: 2rem;
+    width: 2vw;
+    height: 4vh;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+}
+
+#back:hover {
+    background-color: var(--bg-color-hover);
+    color: var(--color-hover);
+}
+
+/*barra de status*/
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 25vh;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px 5px rgba(56, 56, 56, 0.2);
+    border-radius: 10px;
+    margin-top: 10rem;
+    text-align: left;
+}
+
+.statBar {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.statName {
+    width: 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: start;
+    margin-right: 4rem;
+}
+
+.statValue {
+    width: 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: right;
+    margin-right: 1rem;
+    letter-spacing: 2px;
+}
+
+.statProgress {
+    width: 50vw;
+    height: 10px;
+    background-color: var(--bar-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.statFill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 5px;
+}

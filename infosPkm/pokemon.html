@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" id="cssLink" href="infostyles.css">
+    <title id="titulo"></title>
+    <link rel="shortcut icon" href="/projeto/pokedex/assets/pokeinfoFavicon.ico" />
+    <script src="https://kit.fontawesome.com/e6bebc25de.js" crossorigin="anonymous"></script>
+    <script type="module" src="pkm.js" ></script>
+</head>
+<body id="body">
+    <div id="mainContainer">
+        <button id="back"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i></i></button>
+        <button id="dark" class="modebtn"><i id="btnImage" class="fa-solid fa-cloud-sun"></i></button>
+        
+        <div id="pkmContainer">
+
+        </div>
+    </div>    
+
+    <script>
+        const colors = {
+            normal: '#A8A77A',
+            fire: '#EE8130',
+            water: '#6390F0',
+            electric: '#F7D02C',
+            grass: '#7AC74C',
+            ice: '#96D9D6',
+            fighting: '#C22E28',
+            poison: '#A33EA1',
+            ground: '#E2BF65',
+            flying: '#A98FF3',
+            psychic: '#F95587',
+            bug: '#A6B91A',
+            rock: '#B6A136',
+            ghost: '#735797',
+            dragon: '#6F35FC',
+            dark: '#705746',
+            steel: '#B7B7CE',
+            fairy: '#ff4eee',
+        };
+
+        const mainType = Object.keys(colors);
+        const secondType = Object.keys(colors);
+        //pega ID igual ao da url
+        const urlParams = new URLSearchParams(window.location.search);
+        const pokemonId = urlParams.get('id');
+
+        //Busca pelos pkm
+        const fetchPokemonDetails = async (id) => {
+            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+            const resp = await fetch(url);
+            const data = await resp.json();
+            displayPokemonDetails(data);
+        };
+
+        //Exibe dos dados
+        const displayPokemonDetails = (poke) => {
+            const container = document.getElementById('pkmContainer');
+            const title = document.getElementById('titulo');
+            const body = document.getElementById('body');
+
+            const name = poke.name[0].toUpperCase() + poke.name.slice(1);
+            const id = poke.id.toString().padStart(3, '0');
+            
+            const pokeTypes = poke.types.map(type => type.type.name);
+            const type = mainType.find(type => pokeTypes.indexOf(type) === 0); // Só pega o tipo na posição 0
+            const secType = secondType.find(type => pokeTypes.indexOf(type) === 1) ?? null; // Pega após o separador
+            const color = colors[type];
+            const colorSecond = secType ? colors[secType] : color;
+            const ability = poke.abilities.map(ability => ability.ability.name).join(', ');
+            const height = poke.height / 10; //m
+            const weight = poke.weight / 10; //kg
+
+            const maxStat = 300;
+            const statAbbreviations = {
+                'hp': 'HP',
+                'attack': 'ATK',
+                'defense': 'DEF',
+                'special-attack': 'SPATK',
+                'special-defense': 'SPDEF',
+                'speed': 'SPE'
+            };
+            const statsHTML = poke.stats.map(stat => {
+                const statValue = stat.base_stat.toString().padStart(3, '0');
+                const statPercentage = (statValue / maxStat) * 100;
+                const statName = statAbbreviations[stat.stat.name];
+                return `
+                <div class="statBar">
+                    <span class="statName" style="color: ${color};">${statName}</span>
+                    <span class="statValue" style="font-weight: lighter; color: #71797E">${statValue}</span>
+                    <div class="statProgress">
+                        <div class="statFill" style="width: ${statPercentage}%; background-color: ${color}"></div>
+                    </div>
+                </div>
+                `
+            }).join('');
+
+            title.innerHTML = `${id} | ${name}`
+            body.style.background = color
+
+            container.innerHTML = `
+            <div class="imgPkm">
+            <img class="pokeSprite" src="https://raw.githubusercontent.com/wellrccity/pokedex-html-js/refs/heads/master/assets/img/pokemons/poke_${poke.id}.gif" alt="${name}">
+            </div>
+
+            <div class="infosPkm">
+                <div class="infoContainer">
+                <div class="generalInfo">
+                <span>${id}</span>
+                <h2>${name}<h2>
+                <div class="Types">
+                <p class="typesPkm" style="background: ${color}; box-shadow: 0 0 15px 2px ${color};" id="type1">
+                    <img class="typeImg" src="https://raw.githubusercontent.com/partywhale/pokemon-type-icons/fcbe6978c61c359680bc07636c3f9bdc0f346b43/icons/${type}.svg">${type}
+                </p>
+                ${secType ? `
+                <p class="typesPkm" style="background: ${colorSecond}; box-shadow: 0 0 15px 2px ${colorSecond};" id="type2">
+                    <img class="typeImg" src="https://raw.githubusercontent.com/partywhale/pokemon-type-icons/fcbe6978c61c359680bc07636c3f9bdc0f346b43/icons/${secType}.svg">${secType}
+                </p>
+                ` : ''}
+                </div>
+                </div>
+                    <div class="aboutPkm">
+                    <span>${height} M</span>
+                    <span class="bar"></span>
+                    <span>${weight} Kg</span>
+                    <span class="bar"></span>
+                    <span id="abilityPkm" style="{font-size: 1.5rem;}">Habilidades: ${ability}</span>
+                    </div>
+                </div>
+                <div class="statsContainer">
+                    <p>${statsHTML}</p>
+                </div>
+                <div class="movesPkm">
+                    </div>
+                </div>
+            `
+        }
+
+        fetchPokemonDetails(pokemonId).catch(error => console.error(error));
+    </script>
+</body>
+</html>

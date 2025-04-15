@@ -1,0 +1,242 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 1028px){
+  * {
+    overflow-x: hidden;
+  }
+
+  body {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dropdown{
+    position: fixed !important;
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropbtn {
+    max-width: 80px;
+  }
+
+  .btnGen {
+    width: 15px !important;
+    height: 40px;
+  }
+}
+
+h1 {
+    margin-top: 2rem;
+    letter-spacing: 15px;
+    font-family: "Boldonse", sans-serif;
+    color: white;
+}
+
+body {
+    display: flex;
+    background: linear-gradient(180deg, rgba(32,32,32,1) 0%, rgba(0,0,0,1) 4%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Oswald", sans-serif;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem auto;
+    gap: 10px;
+}
+
+.btnGen {
+    background-color: rgb(255, 91, 70);
+    color: rgb(255, 255, 255);
+    border: 1px solid black;
+    min-width: 4rem;
+    max-height: 4rem;
+    border-radius: 50%;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    padding: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.btnGen:hover {
+    scale: 1.05;
+    color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+}
+
+.btnGen.active {
+  background-color: #4CAF50; /* Verde para indicar ativo */
+  color: white;
+  border-color: #4CAF50;
+}
+
+.pokedexImg {
+  width: 60px;
+  height: 40px;
+}
+
+.dropbtn {
+    background-color: rgb(255, 77, 53);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    padding: 15px 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+    transition: all 0.5s;
+}
+
+.dropbtn:hover {
+    background-color: rgb(228, 85, 85);
+  }
+  
+  .dropbtn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    text-align: center;
+  }
+  
+  .dropbtn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 10px;
+    right: -10px;
+    text-align: center;
+    transition: 0.5s;
+  }
+  
+  .dropbtn:hover span {
+    padding-right: 5px;
+  }
+  
+  .dropbtn:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+.dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+  
+.dropdownContent {
+    display: none;
+    background-color: transparent;
+    min-width: 160px;
+  }
+  
+.dropdownContent button:hover {background-color: #ddd;} 
+ 
+.show {display:flex;}
+
+.searchBar {
+    background-color: white;
+    display: flex;
+    width: 13vw;
+    min-width: 10rem;
+    outline-style: none;
+    display: flex;
+    align-items: center;
+    border: 3px solid orangered;
+    border-radius: 30px;
+    padding: 10px;
+    justify-content: center;
+    transition: 0.3s ease-in;
+}
+
+#search {
+  margin-left: 1rem;
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+.searchBar:hover {
+  border: 3px solid rgb(255, 73, 73);
+}
+
+/*loader*/
+.pokemon {
+  position: absolute;
+  right: 50vw;
+  top: 50vh;
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50% );
+  border-radius: 50%;
+  border: 8px solid black;
+  animation: spin 1s linear infinite;
+}
+
+.pokemon::before {
+  content: '';
+  position: absolute;
+  height: 8px;
+  width: 90px;
+  background: black;
+  top: 40px;
+  transform: translatey(-50%);
+}
+
+.pokemon::after {
+  content: '';
+  position: absolute;
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  background: white;
+  top: 40px;
+  left: 40px;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 0 8px black, inset 0 0 0 10px white, inset 0 0 0 12px black;
+
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

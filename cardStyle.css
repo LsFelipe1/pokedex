@@ -1,0 +1,110 @@
+@media screen and (max-width: 1028px){
+    .pkmContainer {
+        margin: 0 1rem !important;
+    }
+  }  
+
+.pkmContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 18rem;
+}
+
+.fa-star {
+    position: relative;
+    cursor: pointer; /* Mostra que é clicável */
+    font-size: 1.2rem;
+    color: #ccc; /* Cor padrão (estrela vazia) */
+    transition: color 0.3s ease;
+}
+
+.fa-star.favorited {
+    color: #FFD700; /* Amarelo dourado para favoritado */
+}
+
+.fa-star:hover {
+    color: #FFD700; /* Destaque ao passar o mouse */
+}
+
+.pkmCard {
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(100, 100, 100, 0.5);
+    padding: 20px;
+    max-width: 10rem;
+    max-height: 18rem;
+    margin: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.pkmContainer:hover > .pkmCard:not(:hover) {
+    filter: blur(2px);
+  }
+
+.pkmCard:hover {
+    scale: 1.07;
+    box-shadow: 0 3px 35px rgb(32, 32, 32);
+}
+
+.pkmImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+}
+
+.pkmImg img{
+    max-width: 90%;
+    scale: 1.4;
+}
+
+.gifPkm, .imgPkm {
+    position: absolute;
+  }
+
+  .gifPkm {
+    display: none;
+}
+
+  .imgPkm {
+    display: block;
+  }
+
+  .pkmCard:hover .imgPkm{
+    display: none;
+}
+
+
+.pkmCard:hover .gifPkm{
+    display: block;
+}
+
+.infoPkm {
+    margin-top: 1rem;
+}
+
+#pkmId {
+    background-color: rgba(22, 22, 22, 0.8);
+    padding: 2px 10px;
+    font-weight: 900;
+    color: white;
+    border-radius: 30px;
+    letter-spacing: 2px;
+}
+
+#pkmName {
+    margin-top: 0.8rem;
+}
+
+.pkmType {
+    color: rgba(255,255,255,1);
+    font-weight: 700;
+}
